@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>Sample H5 Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: "Microsoft YaHei", sans-serif;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.45), transparent 30%),
+        linear-gradient(135deg, #1d4ed8, #0f766e);
+      color: #ffffff;
+    }
+    .card {
+      width: min(88vw, 520px);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(10px);
+      padding: 28px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.16);
+      text-align: center;
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: 30px;
+    }
+    p {
+      margin: 0 0 18px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.9);
+    }
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #134e4a;
+      background: #ffffff;
+      cursor: pointer;
+    }
+    #score {
+      margin-top: 18px;
+      font-size: 22px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Sample H5 Game</h1>
+    <p>这是一个最小可访问的 H5 示例页面。你可以先把它作为 `htmlUrl` 跑通 ONLYOFFICE 插件，再替换成你自己的小游戏入口。</p>
+    <button id="btn">点我加分</button>
+    <div id="score">Score: 0</div>
+  </div>
+  <script>
+    (function () {
+      var score = 0;
+      var scoreView = document.getElementById("score");
+      document.getElementById("btn").addEventListener("click", function () {
+        score += 1;
+        scoreView.textContent = "Score: " + score;
+      });
+    })();
+  </script>
+</body>
+</html>

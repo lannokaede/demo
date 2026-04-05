@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>Trial H5 Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      color-scheme: light;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.28), transparent 30%),
+        linear-gradient(135deg, #0f4c81, #1f7a8c 55%, #bfdb38);
+      font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+      color: #fff;
+    }
+    .card {
+      width: min(88vw, 560px);
+      padding: 28px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.16);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(8px);
+      text-align: center;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 32px;
+      letter-spacing: 0.03em;
+    }
+    p {
+      margin: 0 0 20px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.92);
+    }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(80px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+    button {
+      border: 0;
+      border-radius: 16px;
+      padding: 18px 12px;
+      font-size: 28px;
+      font-weight: 700;
+      color: #0f4c81;
+      background: #fff;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 10px 20px rgba(15, 76, 129, 0.18);
+    }
+    button:hover {
+      transform: translateY(-2px);
+    }
+    .score {
+      margin-top: 18px;
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .footer {
+      margin-top: 12px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.82);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Trial H5 Game</h1>
+    <p>点击下面的方块加分。这个页面专门用来测试 ONLYOFFICE 插件插入 H5 的流程。</p>
+    <div class="board">
+      <button type="button" data-score="1">1</button>
+      <button type="button" data-score="2">2</button>
+      <button type="button" data-score="3">3</button>
+      <button type="button" data-score="4">4</button>
+      <button type="button" data-score="5">5</button>
+      <button type="button" data-score="6">6</button>
+    </div>
+    <div class="score" id="score">Score: 0</div>
+    <div class="footer">如果这个页面能正常打开并交互，说明你的 H5 资源地址链路是通的。</div>
+  </div>
+  <script>
+    (function () {
+      var score = 0;
+      var scoreView = document.getElementById("score");
+      document.querySelectorAll("[data-score]").forEach(function (button) {
+        button.addEventListener("click", function () {
+          score += Number(button.getAttribute("data-score") || 0);
+          scoreView.textContent = "Score: " + score;
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
