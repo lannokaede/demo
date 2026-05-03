@@ -18,8 +18,13 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
+import java.time.Duration;
 import java.time.Instant;
 import java.util.Base64;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -29,6 +34,7 @@ import java.util.Objects;
 @Service
 public class OnlyOfficeService {
 
+    private static final Duration REMOTE_FETCH_TIMEOUT = Duration.ofMinutes(5);
     private static final String DEFAULT_H5_PREVIEW_IMAGE_DATA_URI =
             "data:image/png;base64,"
                     + "iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgCAYAAAA10dzkAAAACXBIWXMAAAsSAAALEgHS3X78AAAF"
@@ -50,18 +56,20 @@ public class OnlyOfficeService {
     private final OnlyOfficeProperties onlyOfficeProperties;
     private final ObjectMapper objectMapper;
     private final HttpClient httpClient;
+    private final ConcurrentMap<String, CompletableFuture<WpsFileRecord>> remotePreviewLoads = new ConcurrentHashMap<>();
 
     public OnlyOfficeService(
             WpsFileMapper fileMapper,
             MinioStorageService minioStorageService,
             OnlyOfficeProperties onlyOfficeProperties,
-            ObjectMapper objectMapper
+            ObjectMapper objectMapper,
+            HttpClient outboundHttpClient
     ) {
         this.fileMapper = fileMapper;
         this.minioStorageService = minioStorageService;
         this.onlyOfficeProperties = onlyOfficeProperties;
         this.objectMapper = objectMapper;
-        this.httpClient = HttpClient.newBuilder().build();
+        this.httpClient = outboundHttpClient;
     }
 
     public Map<String, Object> registerExistingFile(WpsFileRegisterRequest request, String baseUrl) {
@@ -150,6 +158,27 @@ public class OnlyOfficeService {
         result.put("editorConfig", config);
         result.put("directDownloadUrl", contentUrl);
         result.put("callbackUrl", callbackUrl);
+        result.put("mode", resolvedMode);
+        result.put("editable", "edit".equals(resolvedMode));
+        return result;
+    }
+
+    public Map<String, Object> buildRemotePreviewConfig(String fileId, String fileName, String downloadUrl, String userId) {
+        return buildRemotePreviewConfig(fileId, fileName, downloadUrl, userId, "");
+    }
+
+    public Map<String, Object> buildRemotePreviewConfig(String fileId, String fileName, String downloadUrl, String userId, String baseUrl) {
+        String normalizedUrl = normalizeUrl(downloadUrl, "downloadUrl is required");
+        String normalizedFileId = normalizeFileId(defaultIfBlank(fileId, "remote-preview"));
+        String normalizedFileName = defaultIfBlank(trimToEmpty(fileName), normalizedFileId + ".pptx");
+        String currentUserId = userId == null || userId.isBlank() ? "404" : userId.trim();
+
+        WpsFileRecord record = ensureRemotePreviewFile(normalizedFileId, normalizedFileName, normalizedUrl, currentUserId);
+        Map<String, Object> result = getEditorConfig(record.getFileId(), currentUserId, "edit", baseUrl);
+        result.put("sourceUrl", normalizedUrl);
+        result.put("mode", "edit");
+        result.put("editable", true);
+        result.put("sourceType", "superppt-minio");
         return result;
     }
 
@@ -337,8 +366,104 @@ public class OnlyOfficeService {
         result.put("bucketName", record.getBucketName());
         result.put("objectKey", record.getObjectKey());
         result.put("version", record.getVersion());
-        result.put("editorInfo", getEditorConfig(record.getFileId(), userId, onlyOfficeProperties.getDefaultMode(), baseUrl));
+        result.put("editorInfo", getEditorConfig(record.getFileId(), userId, "edit", baseUrl));
         return result;
+    }
+
+    private WpsFileRecord ensureRemotePreviewFile(String fileId, String fileName, String sourceUrl, String userId) {
+        CompletableFuture<WpsFileRecord> load = new CompletableFuture<>();
+        CompletableFuture<WpsFileRecord> inFlight = remotePreviewLoads.putIfAbsent(fileId, load);
+        if (inFlight != null) {
+            return awaitRemotePreviewLoad(inFlight);
+        }
+        try {
+            WpsFileRecord record = importRemotePreviewFile(fileId, fileName, sourceUrl, userId);
+            load.complete(record);
+            return record;
+        } catch (Exception ex) {
+            load.completeExceptionally(ex);
+            throw ex;
+        } finally {
+            remotePreviewLoads.remove(fileId, load);
+        }
+    }
+
+    private WpsFileRecord importRemotePreviewFile(String fileId, String fileName, String sourceUrl, String userId) {
+        WpsFileRecord existing = fileMapper.findByFileId(fileId);
+        if (existing != null && previewObjectExists(existing)) {
+            return existing;
+        }
+
+        byte[] content = downloadRemotePreviewFile(sourceUrl);
+        String bucketName = existing == null || trimToEmpty(existing.getBucketName()).isBlank()
+                ? minioStorageService.defaultBucket()
+                : existing.getBucketName();
+        String objectKey = existing == null || trimToEmpty(existing.getObjectKey()).isBlank()
+                ? buildRemotePreviewObjectKey(fileId, fileName)
+                : existing.getObjectKey();
+        String contentType = resolveContentType(fileName);
+        minioStorageService.putObject(bucketName, objectKey, content, contentType);
+
+        MinioStorageService.FileStat stat = minioStorageService.statObject(bucketName, objectKey);
+        WpsFileRecord record = existing == null ? new WpsFileRecord() : existing;
+        long now = Instant.now().getEpochSecond();
+        record.setFileId(fileId);
+        record.setBucketName(bucketName);
+        record.setObjectKey(objectKey);
+        record.setFileName(fileName);
+        record.setVersion(resolveImportedVersion(existing));
+        record.setSize(stat.size());
+        record.setCreatorId(existing == null ? userId : existing.getCreatorId());
+        record.setModifierId(userId);
+        record.setCreateTime(existing == null || existing.getCreateTime() == null ? now : existing.getCreateTime());
+        record.setModifyTime(stat.lastModifiedEpochSecond());
+
+        if (existing == null) {
+            fileMapper.insert(record);
+        } else {
+            fileMapper.updateByFileId(record);
+        }
+        return record;
+    }
+
+    private WpsFileRecord awaitRemotePreviewLoad(CompletableFuture<WpsFileRecord> inFlight) {
+        try {
+            return inFlight.join();
+        } catch (CompletionException ex) {
+            Throwable cause = ex.getCause();
+            if (cause instanceof RuntimeException runtimeException) {
+                throw runtimeException;
+            }
+            throw new BusinessException(50025, "remote preview download failed: " + cause.getMessage());
+        }
+    }
+
+    private boolean previewObjectExists(WpsFileRecord record) {
+        try {
+            minioStorageService.statObject(record.getBucketName(), record.getObjectKey());
+            return true;
+        } catch (BusinessException ex) {
+            if (ex.getCode() == 40420) {
+                return false;
+            }
+            throw ex;
+        }
+    }
+
+    private Long resolveImportedVersion(WpsFileRecord existing) {
+        if (existing == null || existing.getVersion() == null || existing.getVersion() < 1) {
+            return 1L;
+        }
+        return existing.getVersion() + 1;
+    }
+
+    private String buildRemotePreviewObjectKey(String fileId, String fileName) {
+        return "onlyoffice-preview/" + fileId + "/" + sanitizeObjectFileName(fileName);
+    }
+
+    private String sanitizeObjectFileName(String fileName) {
+        String normalized = trimToEmpty(fileName).replace("\\", "_").replace("/", "_").replace("\"", "");
+        return normalized.isBlank() ? "preview.pptx" : normalized;
     }
 
     private Map<String, Object> buildPermissions(String mode) {
@@ -416,10 +541,6 @@ public class OnlyOfficeService {
     }
 
     private String resolveMode(String mode) {
-        String candidate = mode == null || mode.isBlank() ? onlyOfficeProperties.getDefaultMode() : mode.trim();
-        if ("view".equalsIgnoreCase(candidate) || "preview".equalsIgnoreCase(candidate) || "readonly".equalsIgnoreCase(candidate)) {
-            return "view";
-        }
         return "edit";
     }
 
@@ -563,6 +684,7 @@ public class OnlyOfficeService {
         try {
             HttpRequest.Builder builder = HttpRequest.newBuilder()
                     .uri(URI.create(downloadUrl))
+                    .timeout(REMOTE_FETCH_TIMEOUT)
                     .GET();
             String secret = trimToEmpty(onlyOfficeProperties.getJwtSecret());
             if (!secret.isBlank()) {
@@ -578,6 +700,25 @@ public class OnlyOfficeService {
             throw ex;
         } catch (Exception ex) {
             throw new BusinessException(50025, "onlyoffice download failed: " + ex.getMessage());
+        }
+    }
+
+    private byte[] downloadRemotePreviewFile(String downloadUrl) {
+        try {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(downloadUrl))
+                    .timeout(REMOTE_FETCH_TIMEOUT)
+                    .GET()
+                    .build();
+            HttpResponse<byte[]> response = httpClient.send(request, HttpResponse.BodyHandlers.ofByteArray());
+            if (response.statusCode() < 200 || response.statusCode() >= 300) {
+                throw new BusinessException(50025, "remote preview download failed with status " + response.statusCode());
+            }
+            return response.body();
+        } catch (BusinessException ex) {
+            throw ex;
+        } catch (Exception ex) {
+            throw new BusinessException(50025, "remote preview download failed: " + ex.getMessage());
         }
     }
 

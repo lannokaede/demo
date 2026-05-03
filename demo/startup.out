@@ -1,3 +1,50 @@
+[INFO] Scanning for projects...
+Downloading from central: https://repo.maven.apache.org/maven2/org/cyclonedx/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/org/springframework/boot/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/org/flywaydb/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/io/github/git-commit-id/maven-metadata.xml
+Progress (1): 243 BProgress (2): 243 B | 234 BProgress (3): 243 B | 234 B | 249 BProgress (4): 243 B | 234 B | 249 B | 255 B                                           Downloaded from central: https://repo.maven.apache.org/maven2/io/github/git-commit-id/maven-metadata.xml (255 B at 301 B/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/springframework/boot/maven-metadata.xml (249 B at 293 B/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/flywaydb/maven-metadata.xml (234 B at 275 B/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/jooq/maven-metadata.xml
+Downloaded from central: https://repo.maven.apache.org/maven2/org/cyclonedx/maven-metadata.xml (243 B at 286 B/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/org/liquibase/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/org/graalvm/buildtools/maven-metadata.xml
+Progress (1): 375 BProgress (2): 375 B | 394 BProgress (3): 375 B | 394 B | 242 B                                   Downloaded from central: https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/maven-metadata.xml (375 B at 2.3 kB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/liquibase/maven-metadata.xml (394 B at 2.3 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/mojo/maven-metadata.xml
+Progress (2): 242 B | 398 B                           Downloaded from central: https://repo.maven.apache.org/maven2/org/graalvm/buildtools/maven-metadata.xml (242 B at 1.4 kB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/jooq/maven-metadata.xml (398 B at 2.3 kB/s)
+Progress (1): 4.6 kBProgress (1): 9.7 kBProgress (1): 14 kB Progress (2): 14 kB | 3.4 kBProgress (2): 14 kB | 3.6 kBProgress (2): 14 kB | 7.9 kBProgress (2): 14 kB | 13 kB Progress (2): 14 kB | 16 kBProgress (2): 14 kB | 20 kBProgress (2): 14 kB | 21 kB                           Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-metadata.xml (14 kB at 86 kB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/mojo/maven-metadata.xml (21 kB at 63 kB/s)
+[INFO] 
+[INFO] -----------------------< com.example.demo:demo >------------------------
+[INFO] Building demo 0.0.2-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.0.3:run (default-cli) > test-compile @ demo >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ demo ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 10 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ demo ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ demo ---
+[INFO] skip non existing resourceDirectory C:\Users\lannokaede\Desktop\backended_demo\demo\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ demo ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:4.0.3:run (default-cli) < test-compile @ demo <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.0.3:run (default-cli) @ demo ---
+[INFO] Attaching agents: []
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -8,30 +55,30 @@
 
  :: Spring Boot ::                (v4.0.3)
 
-2026-03-19T00:43:58.405+08:00  INFO 65420 --- [demo] [           main] com.example.demo.DemoApplication         : Starting DemoApplication v0.0.2-SNAPSHOT using Java 21.0.9 with PID 65420 (C:\Users\lannokaede\Desktop\backended_demo\demo\target\demo-0.0.2-SNAPSHOT.jar started by lannokaede in C:\Users\lannokaede\Desktop\backended_demo\demo)
-2026-03-19T00:43:58.418+08:00  INFO 65420 --- [demo] [           main] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
-2026-03-19T00:43:58.421+08:00 DEBUG 65420 --- [demo] [           main] o.s.boot.SpringApplication               : Loading source class com.example.demo.DemoApplication
-2026-03-19T00:43:58.520+08:00 DEBUG 65420 --- [demo] [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.server.servlet.context.AnnotationConfigServletWebServerApplicationContext@1a9c38eb
-2026-03-19T00:43:59.555+08:00 DEBUG 65420 --- [demo] [           main] o.s.b.a.AutoConfigurationPackages        : @EnableAutoConfiguration was declared on a class in the package 'com.example.demo'. Automatic @Repository and @Entity scanning is enabled.
-2026-03-19T00:44:00.473+08:00 DEBUG 65420 --- [demo] [           main] o.s.b.t.s.TomcatServletWebServerFactory  : Code archive: C:\Users\lannokaede\Desktop\backended_demo\demo\target\demo-0.0.2-SNAPSHOT.jar
-2026-03-19T00:44:00.476+08:00 DEBUG 65420 --- [demo] [           main] o.s.b.t.s.TomcatServletWebServerFactory  : Code archive: C:\Users\lannokaede\Desktop\backended_demo\demo\target\demo-0.0.2-SNAPSHOT.jar
-2026-03-19T00:44:00.477+08:00 DEBUG 65420 --- [demo] [           main] o.s.b.t.s.TomcatServletWebServerFactory  : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
-2026-03-19T00:44:00.515+08:00  INFO 65420 --- [demo] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
-2026-03-19T00:44:00.539+08:00  INFO 65420 --- [demo] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-03-19T00:44:00.539+08:00  INFO 65420 --- [demo] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.18]
-2026-03-19T00:44:00.580+08:00 DEBUG 65420 --- [demo] [           main] b.w.c.s.WebApplicationContextInitializer : Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
-2026-03-19T00:44:00.582+08:00  INFO 65420 --- [demo] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2061 ms
-2026-03-19T00:44:00.609+08:00 DEBUG 65420 --- [demo] [           main] o.s.b.w.s.ServletContextInitializerBeans : Mapping filters: characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105
-2026-03-19T00:44:00.610+08:00 DEBUG 65420 --- [demo] [           main] o.s.b.w.s.ServletContextInitializerBeans : Mapping servlets: dispatcherServlet urls=[/]
-2026-03-19T00:44:00.645+08:00 DEBUG 65420 --- [demo] [           main] o.s.b.s.f.OrderedRequestContextFilter    : Filter 'requestContextFilter' configured for use
-2026-03-19T00:44:00.648+08:00 DEBUG 65420 --- [demo] [           main] o.s.b.s.f.OrderedCharacterEncodingFilter : Filter 'characterEncodingFilter' configured for use
-2026-03-19T00:44:00.649+08:00 DEBUG 65420 --- [demo] [           main] o.s.b.s.filter.OrderedFormContentFilter  : Filter 'formContentFilter' configured for use
-2026-03-19T00:44:02.067+08:00 DEBUG 65420 --- [demo] [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 13 mappings in 'requestMappingHandlerMapping'
-2026-03-19T00:44:02.120+08:00 DEBUG 65420 --- [demo] [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
-2026-03-19T00:44:02.157+08:00 DEBUG 65420 --- [demo] [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 2 RequestBodyAdvice, 1 ResponseBodyAdvice
-2026-03-19T00:44:02.260+08:00 DEBUG 65420 --- [demo] [           main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
-2026-03-19T00:44:02.432+08:00  INFO 65420 --- [demo] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
-2026-03-19T00:44:02.456+08:00 DEBUG 65420 --- [demo] [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+2026-04-12T23:40:47.616+08:00  INFO 58092 --- [demo] [           main] com.example.demo.DemoApplication         : Starting DemoApplication using Java 21.0.9 with PID 58092 (C:\Users\lannokaede\Desktop\backended_demo\demo\target\classes started by lannokaede in C:\Users\lannokaede\Desktop\backended_demo\demo)
+2026-04-12T23:40:47.622+08:00  INFO 58092 --- [demo] [           main] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-04-12T23:40:47.623+08:00 DEBUG 58092 --- [demo] [           main] o.s.boot.SpringApplication               : Loading source class com.example.demo.DemoApplication
+2026-04-12T23:40:47.715+08:00 DEBUG 58092 --- [demo] [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.server.servlet.context.AnnotationConfigServletWebServerApplicationContext@10ded6a9
+2026-04-12T23:40:48.503+08:00 DEBUG 58092 --- [demo] [           main] o.s.b.a.AutoConfigurationPackages        : @EnableAutoConfiguration was declared on a class in the package 'com.example.demo'. Automatic @Repository and @Entity scanning is enabled.
+2026-04-12T23:40:49.296+08:00 DEBUG 58092 --- [demo] [           main] o.s.b.t.s.TomcatServletWebServerFactory  : Code archive: C:\Users\lannokaede\.m2\repository\org\springframework\boot\spring-boot-web-server\4.0.3\spring-boot-web-server-4.0.3.jar
+2026-04-12T23:40:49.297+08:00 DEBUG 58092 --- [demo] [           main] o.s.b.t.s.TomcatServletWebServerFactory  : Code archive: C:\Users\lannokaede\.m2\repository\org\springframework\boot\spring-boot-web-server\4.0.3\spring-boot-web-server-4.0.3.jar
+2026-04-12T23:40:49.298+08:00 DEBUG 58092 --- [demo] [           main] o.s.b.t.s.TomcatServletWebServerFactory  : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2026-04-12T23:40:49.338+08:00  INFO 58092 --- [demo] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-04-12T23:40:49.362+08:00  INFO 58092 --- [demo] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-12T23:40:49.363+08:00  INFO 58092 --- [demo] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-04-12T23:40:49.452+08:00 DEBUG 58092 --- [demo] [           main] b.w.c.s.WebApplicationContextInitializer : Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2026-04-12T23:40:49.455+08:00  INFO 58092 --- [demo] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1738 ms
+2026-04-12T23:40:49.479+08:00 DEBUG 58092 --- [demo] [           main] o.s.b.w.s.ServletContextInitializerBeans : Mapping filters: characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105
+2026-04-12T23:40:49.479+08:00 DEBUG 58092 --- [demo] [           main] o.s.b.w.s.ServletContextInitializerBeans : Mapping servlets: dispatcherServlet urls=[/]
+2026-04-12T23:40:49.521+08:00 DEBUG 58092 --- [demo] [           main] o.s.b.s.f.OrderedRequestContextFilter    : Filter 'requestContextFilter' configured for use
+2026-04-12T23:40:49.524+08:00 DEBUG 58092 --- [demo] [           main] o.s.b.s.f.OrderedCharacterEncodingFilter : Filter 'characterEncodingFilter' configured for use
+2026-04-12T23:40:49.525+08:00 DEBUG 58092 --- [demo] [           main] o.s.b.s.filter.OrderedFormContentFilter  : Filter 'formContentFilter' configured for use
+2026-04-12T23:40:50.557+08:00 DEBUG 58092 --- [demo] [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 63 mappings in 'requestMappingHandlerMapping'
+2026-04-12T23:40:50.592+08:00 DEBUG 58092 --- [demo] [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2026-04-12T23:40:50.620+08:00 DEBUG 58092 --- [demo] [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 2 RequestBodyAdvice, 1 ResponseBodyAdvice
+2026-04-12T23:40:50.677+08:00 DEBUG 58092 --- [demo] [           main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2026-04-12T23:40:50.806+08:00  INFO 58092 --- [demo] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-04-12T23:40:50.817+08:00 DEBUG 58092 --- [demo] [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
 
 
 ============================
@@ -171,6 +218,17 @@ Positive matches:
    LifecycleAutoConfiguration#defaultLifecycleProcessor matched:
       - @ConditionalOnMissingBean (names: lifecycleProcessor; SearchStrategy: current) did not find any beans (OnBeanCondition)
 
+   MailSenderAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'jakarta.mail.internet.MimeMessage', 'jakarta.activation.MimeType', 'org.springframework.mail.MailSender' (OnClassCondition)
+      - AnyNestedCondition 1 matched 1 did not; NestedCondition on MailSenderAutoConfiguration.MailSenderCondition.JndiNameProperty @ConditionalOnProperty (spring.mail.jndi-name) did not find property 'spring.mail.jndi-name'; NestedCondition on MailSenderAutoConfiguration.MailSenderCondition.HostProperty @ConditionalOnProperty (spring.mail.host) matched (MailSenderAutoConfiguration.MailSenderCondition)
+      - @ConditionalOnMissingBean (types: org.springframework.mail.MailSender; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   MailSenderPropertiesConfiguration matched:
+      - @ConditionalOnProperty (spring.mail.host) matched (OnPropertyCondition)
+
+   MailSenderPropertiesConfiguration#mailSender matched:
+      - @ConditionalOnMissingBean (types: org.springframework.mail.javamail.JavaMailSender; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
    MultipartAutoConfiguration matched:
       - @ConditionalOnClass found required classes 'jakarta.servlet.Servlet', 'org.springframework.web.multipart.support.StandardServletMultipartResolver', 'jakarta.servlet.MultipartConfigElement' (OnClassCondition)
       - found 'session' scope (OnWebApplicationCondition)
@@ -236,8 +294,17 @@ Positive matches:
    TaskSchedulingAutoConfiguration matched:
       - @ConditionalOnClass found required class 'org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler' (OnClassCondition)
 
+   TaskSchedulingAutoConfiguration#scheduledBeanLazyInitializationExcludeFilter matched:
+      - @ConditionalOnBean (names: org.springframework.scheduling.config.internalScheduledAnnotationProcessor; SearchStrategy: all) found bean 'org.springframework.scheduling.config.internalScheduledAnnotationProcessor' (OnBeanCondition)
+
    TaskSchedulingConfigurations.SimpleAsyncTaskSchedulerBuilderConfiguration#simpleAsyncTaskSchedulerBuilder matched:
       - @ConditionalOnMissingBean (types: org.springframework.boot.task.SimpleAsyncTaskSchedulerBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+      - @ConditionalOnThreading found PLATFORM (OnThreadingCondition)
+
+   TaskSchedulingConfigurations.TaskSchedulerConfiguration matched:
+      - @ConditionalOnBean (names: org.springframework.scheduling.config.internalScheduledAnnotationProcessor; SearchStrategy: all) found bean 'org.springframework.scheduling.config.internalScheduledAnnotationProcessor'; @ConditionalOnMissingBean (types: org.springframework.scheduling.TaskScheduler,java.util.concurrent.ScheduledExecutorService; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   TaskSchedulingConfigurations.TaskSchedulerConfiguration#taskScheduler matched:
       - @ConditionalOnThreading found PLATFORM (OnThreadingCondition)
 
    TaskSchedulingConfigurations.ThreadPoolTaskSchedulerBuilderConfiguration#threadPoolTaskSchedulerBuilder matched:
@@ -414,6 +481,20 @@ Negative matches:
       Did not match:
          - @ConditionalOnClass did not find required classes 'kotlinx.serialization.Serializable', 'kotlinx.serialization.json.Json' (OnClassCondition)
 
+   MailHealthContributorAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.springframework.boot.health.autoconfigure.contributor.ConditionalOnEnabledHealthIndicator' (OnClassCondition)
+
+   MailSenderJndiConfiguration:
+      Did not match:
+         - @ConditionalOnProperty (spring.mail.jndi-name) did not find property 'spring.mail.jndi-name' (OnPropertyCondition)
+      Matched:
+         - @ConditionalOnClass found required class 'jakarta.mail.Session' (OnClassCondition)
+
+   MailSenderValidatorAutoConfiguration:
+      Did not match:
+         - @ConditionalOnBooleanProperty (spring.mail.test-connection=true) did not find property 'spring.mail.test-connection' (OnPropertyCondition)
+
    MessageSourceAutoConfiguration:
       Did not match:
          - ResourceBundle did not find bundle with basename messages (MessageSourceAutoConfiguration.ResourceBundleCondition)
@@ -478,17 +559,13 @@ Negative matches:
       Did not match:
          - @ConditionalOnThreading did not find VIRTUAL (OnThreadingCondition)
 
-   TaskSchedulingAutoConfiguration#scheduledBeanLazyInitializationExcludeFilter:
-      Did not match:
-         - @ConditionalOnBean (names: org.springframework.scheduling.config.internalScheduledAnnotationProcessor; SearchStrategy: all) did not find any beans named org.springframework.scheduling.config.internalScheduledAnnotationProcessor (OnBeanCondition)
-
    TaskSchedulingConfigurations.SimpleAsyncTaskSchedulerBuilderConfiguration#simpleAsyncTaskSchedulerBuilderVirtualThreads:
       Did not match:
          - @ConditionalOnMissingBean (types: org.springframework.boot.task.SimpleAsyncTaskSchedulerBuilder; SearchStrategy: all) found beans of type 'org.springframework.boot.task.SimpleAsyncTaskSchedulerBuilder' simpleAsyncTaskSchedulerBuilder (OnBeanCondition)
 
-   TaskSchedulingConfigurations.TaskSchedulerConfiguration:
+   TaskSchedulingConfigurations.TaskSchedulerConfiguration#taskSchedulerVirtualThreads:
       Did not match:
-         - @ConditionalOnBean (names: org.springframework.scheduling.config.internalScheduledAnnotationProcessor; SearchStrategy: all) did not find any beans named org.springframework.scheduling.config.internalScheduledAnnotationProcessor (OnBeanCondition)
+         - @ConditionalOnThreading did not find VIRTUAL (OnThreadingCondition)
 
    TomcatMetricsAutoConfiguration:
       Did not match:
@@ -583,30 +660,320 @@ Unconditional classes:
 
 
 
-2026-03-19T00:44:02.488+08:00  INFO 65420 --- [demo] [           main] com.example.demo.DemoApplication         : Started DemoApplication in 4.918 seconds (process running for 6.188)
-2026-03-19T00:44:02.491+08:00 DEBUG 65420 --- [demo] [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state LivenessState changed to CORRECT
-2026-03-19T00:44:02.497+08:00 DEBUG 65420 --- [demo] [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
-2026-03-19T00:44:02.570+08:00  INFO 65420 --- [demo] [nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-03-19T00:44:02.572+08:00  INFO 65420 --- [demo] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-03-19T00:44:02.573+08:00 DEBUG 65420 --- [demo] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
-2026-03-19T00:44:02.573+08:00 DEBUG 65420 --- [demo] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
-2026-03-19T00:44:02.575+08:00 DEBUG 65420 --- [demo] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@73d4e3aa
-2026-03-19T00:44:02.576+08:00 DEBUG 65420 --- [demo] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@51a29d6d
-2026-03-19T00:44:02.577+08:00 DEBUG 65420 --- [demo] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-2026-03-19T00:44:02.578+08:00  INFO 65420 --- [demo] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
-2026-03-19T00:44:02.596+08:00 DEBUG 65420 --- [demo] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/api/auth/me", parameters={}
-2026-03-19T00:44:02.610+08:00 DEBUG 65420 --- [demo] [nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.AuthController#me(String)
-2026-03-19T00:44:02.654+08:00 DEBUG 65420 --- [demo] [nio-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.example.demo.exception.GlobalExceptionHandler#handleBusiness(BusinessException)
-2026-03-19T00:44:02.671+08:00 DEBUG 65420 --- [demo] [nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
-2026-03-19T00:44:02.678+08:00 DEBUG 65420 --- [demo] [nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [WpsResult[code=40000, data=null, message=token is required]]
-2026-03-19T00:44:02.775+08:00 DEBUG 65420 --- [demo] [nio-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exception.BusinessException: token is required]
-2026-03-19T00:44:02.778+08:00 DEBUG 65420 --- [demo] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
-2026-03-19T00:44:02.854+08:00 DEBUG 65420 --- [demo] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : POST "/api/onlyoffice/files/register", parameters={}
-2026-03-19T00:44:02.857+08:00 DEBUG 65420 --- [demo] [nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.OnlyOfficeFileController#register(WpsFileRegisterRequest)
-2026-03-19T00:44:02.920+08:00 DEBUG 65420 --- [demo] [nio-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=utf-8" to [WpsFileRegisterRequest[fileId=pptchapter2process, objectKey=第二章 进程管理-融合第9章与12章.pptx, fileName=第二章 进程 (truncated)...]
-2026-03-19T00:44:04.012+08:00  INFO 65420 --- [demo] [nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-03-19T00:44:04.757+08:00  INFO 65420 --- [demo] [nio-8080-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@55cb49bb
-2026-03-19T00:44:04.762+08:00  INFO 65420 --- [demo] [nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-03-19T00:44:05.136+08:00 DEBUG 65420 --- [demo] [nio-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
-2026-03-19T00:44:05.146+08:00 DEBUG 65420 --- [demo] [nio-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Writing [WpsResult[code=0, data={fileId=pptchapter2process, fileName=第二章 进程管理-融合第9章与12章.pptx, bucketName=ppt- (truncated)...]
-2026-03-19T00:44:05.159+08:00 DEBUG 65420 --- [demo] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-12T23:40:50.823+08:00  INFO 58092 --- [demo] [           main] com.example.demo.DemoApplication         : Started DemoApplication in 3.929 seconds (process running for 4.551)
+2026-04-12T23:40:50.825+08:00 DEBUG 58092 --- [demo] [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state LivenessState changed to CORRECT
+2026-04-12T23:40:50.828+08:00 DEBUG 58092 --- [demo] [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+2026-04-12T23:40:56.178+08:00  INFO 58092 --- [demo] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-12T23:40:56.179+08:00  INFO 58092 --- [demo] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-12T23:40:56.180+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2026-04-12T23:40:56.181+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2026-04-12T23:40:56.182+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@175c5c3a
+2026-04-12T23:40:56.183+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@3f5dfe69
+2026-04-12T23:40:56.185+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2026-04-12T23:40:56.185+08:00  INFO 58092 --- [demo] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2026-04-12T23:40:56.196+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/api/ppt/healthz", parameters={}
+2026-04-12T23:40:56.207+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.PptTaskController#healthz()
+2026-04-12T23:40:58.062+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-1] o.s.web.client.DefaultRestClient         : Reading to [java.lang.Object]
+2026-04-12T23:40:58.121+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-04-12T23:40:58.125+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Writing [WpsResult[code=0, data={status=ok, service=superppt-core, runtime_mode=prod-like, scs_backend=redis, (truncated)...]
+2026-04-12T23:40:58.191+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-12T23:41:50.866+08:00  INFO 58092 --- [demo] [   scheduling-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-12T23:42:22.143+08:00 ERROR 58092 --- [demo] [   scheduling-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task
+
+org.mybatis.spring.MyBatisSystemException: 
+### Error updating database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+### The error may exist in com/example/demo/mapper/AuthVerificationCodeMapper.java (best guess)
+### The error may involve com.example.demo.mapper.AuthVerificationCodeMapper.deleteExpiredOrUsed
+### The error occurred while executing an update
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:101) ~[mybatis-spring-4.0.0.jar:4.0.0]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:362) ~[mybatis-spring-4.0.0.jar:4.0.0]
+	at jdk.proxy2/jdk.proxy2.$Proxy70.update(Unknown Source) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:249) ~[mybatis-spring-4.0.0.jar:4.0.0]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.19.jar:3.5.19]
+	at jdk.proxy2/jdk.proxy2.$Proxy76.deleteExpiredOrUsed(Unknown Source) ~[na:na]
+	at com.example.demo.service.AuthVerificationCodeCleanupService.cleanupExpiredCodes(AuthVerificationCodeCleanupService.java:28) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:128) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$1(ScheduledMethodRunnable.java:122) ~[spring-context-7.0.5.jar:7.0.5]
+	at io.micrometer.observation.Observation.observe(Observation.java:564) ~[micrometer-observation-1.16.3.jar:1.16.3]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:122) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:88) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-7.0.5.jar:7.0.5]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358) ~[na:na]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: org.apache.ibatis.exceptions.PersistenceException: 
+### Error updating database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+### The error may exist in com/example/demo/mapper/AuthVerificationCodeMapper.java (best guess)
+### The error may involve com.example.demo.mapper.AuthVerificationCodeMapper.deleteExpiredOrUsed
+### The error occurred while executing an update
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+	at org.apache.ibatis.exceptions.ExceptionFactory.wrapException(ExceptionFactory.java:30) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:199) ~[mybatis-3.5.19.jar:3.5.19]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:348) ~[mybatis-spring-4.0.0.jar:4.0.0]
+	... 21 common frames omitted
+Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:84) ~[spring-jdbc-7.0.5.jar:7.0.5]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:83) ~[mybatis-spring-4.0.0.jar:4.0.0]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:70) ~[mybatis-spring-4.0.0.jar:4.0.0]
+	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:348) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:89) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:49) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197) ~[mybatis-3.5.19.jar:3.5.19]
+	... 24 common frames omitted
+Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:165) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:55) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:840) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:416) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:237) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:144) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:373) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:210) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:488) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:576) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:97) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111) ~[HikariCP-7.0.2.jar:na]
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160) ~[spring-jdbc-7.0.5.jar:7.0.5]
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118) ~[spring-jdbc-7.0.5.jar:7.0.5]
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81) ~[spring-jdbc-7.0.5.jar:7.0.5]
+	... 32 common frames omitted
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486) ~[na:na]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:52) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:95) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:140) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:156) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.protocol.a.NativeProtocol.readMessage(NativeProtocol.java:590) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.protocol.a.NativeProtocol.readServerCapabilities(NativeProtocol.java:515) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.protocol.a.NativeProtocol.beforeHandshake(NativeProtocol.java:410) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.protocol.a.NativeProtocol.connect(NativeProtocol.java:1332) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:155) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:964) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:828) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	... 45 common frames omitted
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:278) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796) ~[na:na]
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099) ~[na:na]
+	at com.mysql.cj.protocol.ReadAheadInputStream.fill(ReadAheadInputStream.java:91) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.protocol.ReadAheadInputStream.readFromUnderlyingStreamIfNecessary(ReadAheadInputStream.java:130) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.protocol.ReadAheadInputStream.read(ReadAheadInputStream.java:157) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:119) ~[na:na]
+	at com.mysql.cj.protocol.FullReadInputStream.readFully(FullReadInputStream.java:55) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.protocol.a.SimplePacketReader.readHeaderLocal(SimplePacketReader.java:72) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.protocol.a.SimplePacketReader.readHeader(SimplePacketReader.java:54) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.protocol.a.SimplePacketReader.readHeader(SimplePacketReader.java:36) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.protocol.a.NativeProtocol.readMessage(NativeProtocol.java:584) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	... 51 common frames omitted
+
+2026-04-12T23:52:22.155+08:00  INFO 58092 --- [demo] [   scheduling-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-12T23:52:53.171+08:00 ERROR 58092 --- [demo] [   scheduling-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task
+
+org.mybatis.spring.MyBatisSystemException: 
+### Error updating database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+### The error may exist in com/example/demo/mapper/AuthVerificationCodeMapper.java (best guess)
+### The error may involve com.example.demo.mapper.AuthVerificationCodeMapper.deleteExpiredOrUsed
+### The error occurred while executing an update
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:101) ~[mybatis-spring-4.0.0.jar:4.0.0]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:362) ~[mybatis-spring-4.0.0.jar:4.0.0]
+	at jdk.proxy2/jdk.proxy2.$Proxy70.update(Unknown Source) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:249) ~[mybatis-spring-4.0.0.jar:4.0.0]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.19.jar:3.5.19]
+	at jdk.proxy2/jdk.proxy2.$Proxy76.deleteExpiredOrUsed(Unknown Source) ~[na:na]
+	at com.example.demo.service.AuthVerificationCodeCleanupService.cleanupExpiredCodes(AuthVerificationCodeCleanupService.java:28) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:128) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$1(ScheduledMethodRunnable.java:122) ~[spring-context-7.0.5.jar:7.0.5]
+	at io.micrometer.observation.Observation.observe(Observation.java:564) ~[micrometer-observation-1.16.3.jar:1.16.3]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:122) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:88) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-7.0.5.jar:7.0.5]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358) ~[na:na]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: org.apache.ibatis.exceptions.PersistenceException: 
+### Error updating database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+### The error may exist in com/example/demo/mapper/AuthVerificationCodeMapper.java (best guess)
+### The error may involve com.example.demo.mapper.AuthVerificationCodeMapper.deleteExpiredOrUsed
+### The error occurred while executing an update
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+	at org.apache.ibatis.exceptions.ExceptionFactory.wrapException(ExceptionFactory.java:30) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:199) ~[mybatis-3.5.19.jar:3.5.19]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:348) ~[mybatis-spring-4.0.0.jar:4.0.0]
+	... 21 common frames omitted
+Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:84) ~[spring-jdbc-7.0.5.jar:7.0.5]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:83) ~[mybatis-spring-4.0.0.jar:4.0.0]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:70) ~[mybatis-spring-4.0.0.jar:4.0.0]
+	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:348) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:89) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:49) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197) ~[mybatis-3.5.19.jar:3.5.19]
+	... 24 common frames omitted
+Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:165) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:55) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:840) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:416) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:237) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:144) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:373) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:210) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:488) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:576) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:97) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111) ~[HikariCP-7.0.2.jar:na]
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160) ~[spring-jdbc-7.0.5.jar:7.0.5]
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118) ~[spring-jdbc-7.0.5.jar:7.0.5]
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81) ~[spring-jdbc-7.0.5.jar:7.0.5]
+	... 32 common frames omitted
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486) ~[na:na]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:52) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:95) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:140) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:156) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.protocol.a.NativeProtocol.readMessage(NativeProtocol.java:590) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.protocol.a.NativeProtocol.readServerCapabilities(NativeProtocol.java:515) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.protocol.a.NativeProtocol.beforeHandshake(NativeProtocol.java:410) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.protocol.a.NativeProtocol.connect(NativeProtocol.java:1332) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:155) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:964) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:828) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	... 45 common frames omitted
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:278) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796) ~[na:na]
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099) ~[na:na]
+	at com.mysql.cj.protocol.ReadAheadInputStream.fill(ReadAheadInputStream.java:91) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.protocol.ReadAheadInputStream.readFromUnderlyingStreamIfNecessary(ReadAheadInputStream.java:130) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.protocol.ReadAheadInputStream.read(ReadAheadInputStream.java:157) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:119) ~[na:na]
+	at com.mysql.cj.protocol.FullReadInputStream.readFully(FullReadInputStream.java:55) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.protocol.a.SimplePacketReader.readHeaderLocal(SimplePacketReader.java:72) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.protocol.a.SimplePacketReader.readHeader(SimplePacketReader.java:54) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.protocol.a.SimplePacketReader.readHeader(SimplePacketReader.java:36) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	at com.mysql.cj.protocol.a.NativeProtocol.readMessage(NativeProtocol.java:584) ~[mysql-connector-j-9.6.0.jar:9.6.0]
+	... 51 common frames omitted
+
+2026-04-12T23:53:17.045+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/api/ppt/healthz", parameters={}
+2026-04-12T23:53:17.049+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.PptTaskController#healthz()
+2026-04-12T23:53:18.437+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-3] o.s.web.client.DefaultRestClient         : Reading to [java.lang.Object]
+2026-04-12T23:53:18.438+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-04-12T23:53:18.438+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Writing [WpsResult[code=0, data={status=ok, service=superppt-core, runtime_mode=prod-like, scs_backend=redis, (truncated)...]
+2026-04-12T23:53:18.441+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-12T23:53:37.173+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : POST "/api/ppt/sessions", parameters={}
+2026-04-12T23:53:37.174+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.PptTaskController#createSession(Map)
+2026-04-12T23:53:37.187+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=utf-8" to [{user_assets=[], user_input=请面向本科生生成一份 25 分钟的 Transformer 教学课件，输出 PPT、Word 教案和 H5 互动资源，课程深度为中等偏进阶，最后 (truncated)...]
+2026-04-12T23:53:37.201+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-5] o.s.web.client.DefaultRestClient         : Writing [{user_assets=[], user_input=请面向本科生生成一份 25 分钟的 Transformer 教学课件，输出 PPT、Word 教案和 H5 互动资源，课程深度为中等偏进阶，最后增加一页课堂问答互动。本次只走主流程，不生成数字人。, pipeline_options={force_restart=true, runtime_mode=prod-like, pipeline_id=codex_e2e_20260412_2342}}] as "application/json" with org.springframework.http.converter.json.JacksonJsonHttpMessageConverter
+2026-04-12T23:53:37.688+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-5] o.s.web.client.DefaultRestClient         : Reading to [java.lang.Object]
+2026-04-12T23:53:37.690+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-04-12T23:53:37.691+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Writing [WpsResult[code=0, data={task_id=codex_e2e_20260412_2342, session_id=codex_e2e_20260412_2342, pipelin (truncated)...]
+2026-04-12T23:53:37.693+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-12T23:53:54.777+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/api/ppt/sessions/codex_e2e_20260412_2342", parameters={}
+2026-04-12T23:53:54.781+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.PptTaskController#getSession(String)
+2026-04-12T23:53:55.391+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-7] o.s.web.client.DefaultRestClient         : Reading to [java.lang.Object]
+2026-04-12T23:53:55.394+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-7] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-04-12T23:53:55.395+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-7] m.m.a.RequestResponseBodyMethodProcessor : Writing [WpsResult[code=0, data={task_id=codex_e2e_20260412_2342, session_id=codex_e2e_20260412_2342, pipelin (truncated)...]
+2026-04-12T23:53:55.397+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-12T23:54:03.476+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/api/ppt/sessions/codex_e2e_20260412_2342", parameters={}
+2026-04-12T23:54:03.478+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.PptTaskController#getSession(String)
+2026-04-12T23:54:03.787+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-8] o.s.web.client.DefaultRestClient         : Reading to [java.lang.Object]
+2026-04-12T23:54:03.798+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-04-12T23:54:03.798+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Writing [WpsResult[code=0, data={task_id=codex_e2e_20260412_2342, session_id=codex_e2e_20260412_2342, pipelin (truncated)...]
+2026-04-12T23:54:03.800+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-12T23:54:11.809+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/api/ppt/sessions/codex_e2e_20260412_2342", parameters={}
+2026-04-12T23:54:11.819+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.PptTaskController#getSession(String)
+2026-04-12T23:54:12.113+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-9] o.s.web.client.DefaultRestClient         : Reading to [java.lang.Object]
+2026-04-12T23:54:12.123+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-9] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-04-12T23:54:12.123+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-9] m.m.a.RequestResponseBodyMethodProcessor : Writing [WpsResult[code=0, data={task_id=codex_e2e_20260412_2342, session_id=codex_e2e_20260412_2342, pipelin (truncated)...]
+2026-04-12T23:54:12.125+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-12T23:54:20.136+08:00 DEBUG 58092 --- [demo] [io-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/api/ppt/sessions/codex_e2e_20260412_2342", parameters={}
+2026-04-12T23:54:20.147+08:00 DEBUG 58092 --- [demo] [io-8080-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.PptTaskController#getSession(String)
+2026-04-12T23:54:20.456+08:00 DEBUG 58092 --- [demo] [io-8080-exec-10] o.s.web.client.DefaultRestClient         : Reading to [java.lang.Object]
+2026-04-12T23:54:20.468+08:00 DEBUG 58092 --- [demo] [io-8080-exec-10] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-04-12T23:54:20.468+08:00 DEBUG 58092 --- [demo] [io-8080-exec-10] m.m.a.RequestResponseBodyMethodProcessor : Writing [WpsResult[code=0, data={task_id=codex_e2e_20260412_2342, session_id=codex_e2e_20260412_2342, pipelin (truncated)...]
+2026-04-12T23:54:20.470+08:00 DEBUG 58092 --- [demo] [io-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-12T23:54:28.472+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/api/ppt/sessions/codex_e2e_20260412_2342", parameters={}
+2026-04-12T23:54:28.475+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.PptTaskController#getSession(String)
+2026-04-12T23:54:28.787+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-1] o.s.web.client.DefaultRestClient         : Reading to [java.lang.Object]
+2026-04-12T23:54:28.789+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-04-12T23:54:28.789+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Writing [WpsResult[code=0, data={task_id=codex_e2e_20260412_2342, session_id=codex_e2e_20260412_2342, pipelin (truncated)...]
+2026-04-12T23:54:28.792+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-12T23:54:36.808+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/api/ppt/sessions/codex_e2e_20260412_2342", parameters={}
+2026-04-12T23:54:36.820+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.PptTaskController#getSession(String)
+2026-04-12T23:54:37.114+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-2] o.s.web.client.DefaultRestClient         : Reading to [java.lang.Object]
+2026-04-12T23:54:37.117+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-04-12T23:54:37.117+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Writing [WpsResult[code=0, data={task_id=codex_e2e_20260412_2342, session_id=codex_e2e_20260412_2342, pipelin (truncated)...]
+2026-04-12T23:54:37.119+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-12T23:54:45.124+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/api/ppt/sessions/codex_e2e_20260412_2342", parameters={}
+2026-04-12T23:54:45.126+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.PptTaskController#getSession(String)
+2026-04-12T23:54:45.428+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-3] o.s.web.client.DefaultRestClient         : Reading to [java.lang.Object]
+2026-04-12T23:54:45.430+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-04-12T23:54:45.431+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Writing [WpsResult[code=0, data={task_id=codex_e2e_20260412_2342, session_id=codex_e2e_20260412_2342, pipelin (truncated)...]
+2026-04-12T23:54:45.433+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-12T23:54:53.443+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/api/ppt/sessions/codex_e2e_20260412_2342", parameters={}
+2026-04-12T23:54:53.445+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.PptTaskController#getSession(String)
+2026-04-12T23:54:53.765+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-4] o.s.web.client.DefaultRestClient         : Reading to [java.lang.Object]
+2026-04-12T23:54:53.766+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-04-12T23:54:53.767+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Writing [WpsResult[code=0, data={task_id=codex_e2e_20260412_2342, session_id=codex_e2e_20260412_2342, pipelin (truncated)...]
+2026-04-12T23:54:53.769+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-12T23:55:01.773+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/api/ppt/sessions/codex_e2e_20260412_2342", parameters={}
+2026-04-12T23:55:01.784+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.PptTaskController#getSession(String)
+2026-04-12T23:55:02.096+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-5] o.s.web.client.DefaultRestClient         : Reading to [java.lang.Object]
+2026-04-12T23:55:02.107+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-04-12T23:55:02.108+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Writing [WpsResult[code=0, data={task_id=codex_e2e_20260412_2342, session_id=codex_e2e_20260412_2342, pipelin (truncated)...]
+2026-04-12T23:55:02.109+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-12T23:55:10.122+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/api/ppt/sessions/codex_e2e_20260412_2342", parameters={}
+2026-04-12T23:55:10.133+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.PptTaskController#getSession(String)
+2026-04-12T23:55:10.525+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-6] o.s.web.client.DefaultRestClient         : Reading to [java.lang.Object]
+2026-04-12T23:55:10.534+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-6] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-04-12T23:55:10.535+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-6] m.m.a.RequestResponseBodyMethodProcessor : Writing [WpsResult[code=0, data={task_id=codex_e2e_20260412_2342, session_id=codex_e2e_20260412_2342, pipelin (truncated)...]
+2026-04-12T23:55:10.537+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-12T23:59:35.628+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : POST "/api/ppt/sessions/codex_e2e_20260412_2342/outline/review", parameters={}
+2026-04-12T23:59:35.632+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.PptTaskController#reviewOutline(String, Map)
+2026-04-12T23:59:35.633+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=utf-8" to [{instructions=请增加一页结合实际应用场景的案例分析，并放在自注意力机制之后。, action=revise}]
+2026-04-12T23:59:35.635+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-8] o.s.web.client.DefaultRestClient         : Writing [{instructions=请增加一页结合实际应用场景的案例分析，并放在自注意力机制之后。, action=revise}] as "application/json" with org.springframework.http.converter.json.JacksonJsonHttpMessageConverter
+2026-04-12T23:59:36.713+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/api/ppt/sessions/codex_e2e_20260412_2342/outline", parameters={}
+2026-04-12T23:59:36.716+08:00 DEBUG 58092 --- [demo] [nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.PptTaskController#getOutline(String)

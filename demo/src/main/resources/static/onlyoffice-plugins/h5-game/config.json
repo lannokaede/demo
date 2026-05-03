@@ -1,20 +1,19 @@
 {
-  "guid": "asc.{FFE1F462-1E74-4D2C-8C1F-0A0A0A0A0A01}",
-  "name": "插入H5小游戏",
+  "name": "Insert H5 Game",
   "nameLocale": {
-    "zh": "插入H5小游戏",
+    "zh": "Insert H5 Game",
     "en": "Insert H5 Game"
   },
-  "baseUrl": "",
-  "minVersion": "7.4.0",
+  "guid": "asc.{FFE1F462-1E74-4D2C-8C1F-0A0A0A0A0A01}",
+  "baseUrl": "http://47.109.139.75:8080/onlyoffice-plugins/h5-game/",
   "variations": [
     {
-      "description": "Insert an H5 game into presentation",
+      "description": "Insert and play an H5 page in presentation",
       "descriptionLocale": {
-        "zh": "在演示文稿中插入H5小游戏",
-        "en": "Insert an H5 game into presentation"
+        "zh": "Insert and play an H5 page in presentation",
+        "en": "Insert and play an H5 page in presentation"
       },
-      "url": "index.html",
+      "url": "index.html?v=20260420-resize",
       "icons": [
         "resources/img/icon.svg"
       ],
@@ -25,21 +24,11 @@
       "isVisual": true,
       "isModal": true,
       "isInsideMode": false,
-      "initDataType": "none",
-      "initData": "",
-      "buttons": [
-        {
-          "text": "插入",
-          "primary": true
-        },
-        {
-          "text": "取消",
-          "primary": false
-        }
-      ],
+      "initDataType": "ole",
+      "buttons": [],
       "size": [
-        760,
-        560
+        980,
+        760
       ]
     }
   ]

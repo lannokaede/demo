@@ -1,418 +1,887 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <title>插入 H5 小游戏</title>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="../v1/plugins.js"></script>
-  <script src="../v1/plugins-ui.js"></script>
-  <link rel="stylesheet" href="../v1/plugins.css">
+  <title>Insert H5 Game</title>
   <style>
-    :root {
-      color-scheme: light;
-      --bg: #f3f5f9;
-      --panel: #ffffff;
-      --panel-soft: #f8fafc;
-      --line: #d8dee8;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --accent: #3d6ef7;
-      --accent-soft: rgba(61, 110, 247, 0.12);
-      --success: #0f9f78;
-      --error: #c43d3d;
-      --shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
-      --radius: 18px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
+    html,
     body {
       margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: #000;
+    }
+
+    .player-frame {
+      position: absolute;
+      inset: 0;
+      width: 100vw;
       height: 100vh;
-      font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+      border: 0;
+      display: block;
+    }
+
+    .insert-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 14px;
+      box-sizing: border-box;
       background:
-        radial-gradient(circle at top left, rgba(61, 110, 247, 0.08), transparent 28%),
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.12), transparent 28%),
         linear-gradient(180deg, #f7f8fb 0%, #eef2f7 100%);
-      color: var(--text);
       overflow: hidden;
     }
 
-    html {
-      height: 100%;
-    }
-
-    .shell {
-      padding: 14px;
-      height: 100vh;
-    }
-
-    .panel {
+    .insert-card {
+      width: 100%;
+      max-width: min(920px, calc(100vw - 28px));
+      max-height: calc(100vh - 28px);
       display: flex;
       flex-direction: column;
-      height: 100%;
-      background: var(--panel);
-      border: 1px solid rgba(216, 222, 232, 0.9);
-      border-radius: 22px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .hero {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 24px 26px 20px;
-      background:
-        linear-gradient(135deg, rgba(61, 110, 247, 0.08), rgba(15, 159, 120, 0.06)),
-        var(--panel);
-      border-bottom: 1px solid rgba(216, 222, 232, 0.9);
-    }
-
-    .hero h1 {
-      margin: 0 0 8px;
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: 0.01em;
-    }
-
-    .hero p {
-      margin: 0;
-      max-width: 460px;
-      font-size: 13px;
-      line-height: 1.65;
-      color: var(--muted);
-    }
-
-    .chip {
-      align-self: flex-start;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: var(--panel);
-      border: 1px solid rgba(61, 110, 247, 0.18);
-      color: var(--accent);
-      font-size: 12px;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    .content {
-      display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(260px, 0.92fr);
-      align-items: start;
-      gap: 20px;
-      padding: 22px 26px 24px;
-      flex: 1 1 auto;
       min-height: 0;
+      padding: 24px;
+      box-sizing: border-box;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.14);
+      text-align: center;
       overflow: auto;
     }
 
-    .section {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--panel);
-      padding: 18px 18px 16px;
-    }
-
-    .section.soft {
-      background: var(--panel-soft);
-    }
-
-    .section-title {
-      margin: 0 0 4px;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .section-desc {
-      margin: 0 0 16px;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.55;
-    }
-
-    .field {
-      margin-bottom: 12px;
-    }
-
-    .field-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 12px;
-      font-weight: 700;
-      color: #334155;
-    }
-
-    input {
-      width: 100%;
-      border: 1px solid #cfd6e3;
-      border-radius: 12px;
-      background: #fff;
-      padding: 11px 13px;
-      font-size: 14px;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
-    }
-
-    input:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 4px var(--accent-soft);
-      transform: translateY(-1px);
-    }
-
-    .preview-card {
-      border-radius: 20px;
-      overflow: hidden;
-      background: #fff;
-      border: 1px solid rgba(216, 222, 232, 0.95);
-      box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
-    }
-
-    .preview-cover {
-      position: relative;
-      min-height: 142px;
-      padding: 16px;
-      display: flex;
-      align-items: flex-end;
-      background:
-        linear-gradient(135deg, rgba(61, 110, 247, 0.88), rgba(15, 159, 120, 0.84)),
-        #e8eefc;
-      color: #fff;
-    }
-
-    .preview-cover::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.22), transparent 28%),
-        linear-gradient(180deg, transparent, rgba(0,0,0,0.12));
-      pointer-events: none;
-    }
-
-    .preview-badge {
-      position: relative;
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 700;
-      background: rgba(255,255,255,0.16);
-      border: 1px solid rgba(255,255,255,0.24);
-      backdrop-filter: blur(8px);
-    }
-
-    .preview-body {
-      padding: 16px;
-    }
-
-    .preview-title {
+    .title {
       margin: 0 0 8px;
-      font-size: 20px;
+      color: #172033;
+      font-size: 18px;
       font-weight: 700;
-      color: #152132;
     }
 
-    .preview-meta {
-      display: grid;
-      gap: 8px;
-      margin-top: 14px;
-    }
-
-    .meta-item {
-      border-radius: 14px;
-      background: #f8fafc;
-      border: 1px solid #e4e9f2;
-      padding: 11px 13px;
-    }
-
-    .meta-label {
-      margin-bottom: 4px;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #7b8794;
-    }
-
-    .meta-value {
-      font-size: 13px;
-      line-height: 1.5;
-      color: #243041;
-      word-break: break-all;
-    }
-
-    .hint {
-      margin-top: 14px;
-      padding: 12px 14px;
-      border-radius: 14px;
-      background: rgba(61, 110, 247, 0.06);
-      border: 1px solid rgba(61, 110, 247, 0.16);
-      color: #4c5a6c;
+    .intro {
+      margin: 0 0 14px;
+      color: #607089;
       font-size: 12px;
       line-height: 1.6;
     }
 
-    .footer {
+    .field-label {
+      margin: 0 0 8px;
+      text-align: left;
+      color: #334155;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    select,
+    input {
+      width: 100%;
+      padding: 11px 12px;
+      margin: 0;
+      border: 1px solid #d7deea;
+      border-radius: 10px;
+      font-size: 14px;
+      color: #172033;
+      box-sizing: border-box;
+      background: #fff;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    select:focus,
+    input:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+    }
+
+    .helper {
+      margin: 8px 0 0;
+      min-height: 18px;
+      text-align: left;
+      color: #74839b;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .preview-box {
+      position: relative;
+      width: 100%;
+      height: clamp(260px, 42vh, 460px);
+      min-width: 320px;
+      min-height: 220px;
+      max-width: 100%;
+      max-height: calc(100vh - 280px);
+      margin: 16px 0 14px;
+      border: 1px dashed #c7d0de;
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(180deg, #fdfefe, #f8fbff);
+      resize: both;
+    }
+
+    .preview-frame {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      background: #fff;
+    }
+
+    .preview-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 20px;
+      box-sizing: border-box;
+      background: linear-gradient(180deg, rgba(247, 249, 253, 0.96), rgba(243, 246, 251, 0.98));
+      color: #64748b;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .preview-resize-handle {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 28px;
+      height: 28px;
+      border: 0;
+      border-radius: 12px 0 12px 0;
+      padding: 0;
+      margin: 0;
+      z-index: 8;
+      cursor: nwse-resize;
+      background:
+        linear-gradient(135deg, transparent 52%, rgba(33, 85, 214, 0.22) 52%),
+        rgba(255, 255, 255, 0.82);
+      box-shadow: none;
+    }
+
+    .preview-resize-handle::after {
+      content: "";
+      position: absolute;
+      right: 7px;
+      bottom: 7px;
+      width: 9px;
+      height: 9px;
+      border-right: 2px solid #2155d6;
+      border-bottom: 2px solid #2155d6;
+      opacity: 0.78;
+    }
+
+    .preview-resize-handle:hover {
+      transform: none;
+      box-shadow: none;
+      background:
+        linear-gradient(135deg, transparent 52%, rgba(33, 85, 214, 0.34) 52%),
+        rgba(255, 255, 255, 0.96);
+    }
+
+    .preview-placeholder.is-hidden {
+      display: none;
+    }
+
+    .preview-placeholder strong {
+      color: #172033;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .preview-placeholder span {
+      max-width: 300px;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .preview-meta {
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 0 14px;
+    }
+
+    .preview-name {
+      text-align: left;
+      color: #172033;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .preview-tag {
       flex: 0 0 auto;
-      padding: 14px 26px 18px;
-      border-top: 1px solid rgba(216, 222, 232, 0.9);
-      background: rgba(248, 250, 252, 0.76);
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #edf4ff;
+      color: #2155d6;
+      font-size: 11px;
+      font-weight: 700;
     }
 
-    .status {
-      min-height: 20px;
-      font-size: 12px;
-      color: var(--muted);
+    .custom-row {
+      margin: 0 0 14px;
     }
 
-    .status.success {
-      color: var(--success);
+    .custom-row.is-hidden {
+      display: none;
     }
 
-    .status.error {
-      color: var(--error);
+    .fine-print {
+      margin: 0 0 14px;
+      text-align: left;
+      color: #8a97ab;
+      font-size: 11px;
+      line-height: 1.5;
     }
 
-    .status.loading {
-      color: var(--accent);
+    button {
+      width: 100%;
+      margin-top: 4px;
+      padding: 13px 20px;
+      border: 0;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #1677ff, #2f6df6);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+      box-shadow: 0 12px 24px rgba(22, 119, 255, 0.22);
     }
 
-    @media (max-width: 860px) {
-      .content {
-        grid-template-columns: 1fr;
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 30px rgba(22, 119, 255, 0.26);
+    }
+
+    button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .message {
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      padding: 24px;
+      box-sizing: border-box;
+      color: #fff;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    @media (max-height: 660px) {
+      .insert-card {
+        padding: 18px;
       }
 
-      .hero {
-        flex-direction: column;
+      .title {
+        font-size: 17px;
       }
 
-      .chip {
-        align-self: flex-start;
+      .intro,
+      .fine-print {
+        display: none;
+      }
+
+      .preview-box {
+        height: clamp(220px, 48vh, 380px);
+        max-height: calc(100vh - 230px);
       }
     }
 
-    @media (max-width: 560px) {
-      .shell {
+    @media (max-width: 720px) {
+      .insert-container {
         padding: 10px;
       }
 
-      .hero,
-      .content,
-      .footer {
-        padding-left: 16px;
-        padding-right: 16px;
+      .insert-card {
+        max-width: calc(100vw - 20px);
+        max-height: calc(100vh - 20px);
+        padding: 18px;
       }
 
-      .field-row {
-        grid-template-columns: 1fr;
-        gap: 0;
+      .preview-box {
+        min-width: 240px;
       }
     }
   </style>
+  <script src="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.js"></script>
+  <script src="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins-ui.js"></script>
 </head>
 <body>
-  <div class="shell">
-    <div class="panel">
-      <div class="hero">
-        <div>
-          <h1>插入 H5 小游戏</h1>
-          <p>选择存放在 MinIO 中的游戏资源包。后端会自动解析可用的下载地址，并生成适合插入幻灯片的互动卡片。</p>
-        </div>
-        <div class="chip">ONLYOFFICE 演示插件</div>
-      </div>
+  <div id="app"></div>
 
-      <div class="content">
-        <div class="section">
-          <div class="section-title">资源映射</div>
-          <div class="section-desc">请填写游戏资源在 MinIO 中的位置，无需手动输入原始 HTML 链接。</div>
+  <script>
+    (function () {
+      var DEFAULT_HTML_URL = "http://47.109.139.75:8080/h5-games/sample-game/index.html?v=20260420-resize";
+      var FALLBACK_IMAGE_URL =
+        "data:image/png;base64," +
+        "iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgCAYAAAA10dzkAAAACXBIWXMAAAsSAAALEgHS3X78AAAF" +
+        "qElEQVR4nO3VMQEAIAzAMMC/5yFjRxMFfXpm5gBA1usAANiVAQAwGQMAYDYGAMBkDACA2RgAAJMxAA" +
+        "BmYwAATMYAAJiNAQAwGQMAYDYGAMBkDACA2RgAAJMxAABmYwAATMYAAJiNAQAwGQMAYDYGAMBkDACA" +
+        "2RgAAJMxAABmYwAATMYAAJiNAQAwGQMAYDYGAMBkDACA2RgAAJMxAABmYwAATMYAAJiNAQAwGQMAYD" +
+        "YGAMBkDACA2RgAAJMxAABmYwAATMYAAJiNAQAwGQMAYDYGAMBkDACA2RgAAJMxAABmYwAATMYAAJiN" +
+        "AQAwGQMAYDYGAMBkDACA2RgAAJMxAABmYwAATMYAAJiNAQAwGQMAYDYGAMBkDACA2RgAAJMxAABmYw" +
+        "AATMYAAJiNAQAwGQMAYDYGAMBkDACA2RgAAJMxAABmYwAATMYAAJiNAQAwGQMAYDYGAMBkDACA2RgA" +
+        "AJMxAABmYwAATMYAAJiNAQAwGQMAYDYGAMBkDACA2RgAAJMxAABmYwAATMYAAJiNAQAwGQMAYDYGAM" +
+        "BkDACA2RgAAJMxAABmYwAATMYAAJiNAQAwGQMAYDYGAMBkDACA2RgAAJMxAABmYwAATMYAAJiNAQAw" +
+        "GQMAYDYGAMBkDACA2RgAAJMxAABmYwAATMYAAJiNAQAwGQMAYDYGAMBkDACA2RgAAJMxAABmYwAATM" +
+        "YAAJiNAQAwGQMAYDYGAMBkDACA2RgAAJMxAABmYwAATMYAAJiNAQAwGQMAYDYGAMBkDACA2RgAAJMx" +
+        "AABmYwAATMYAAJiNAQAwGQMAYDYGAMBkDACA2RgAAJMxAABmYwAATMYAAJiNAQAwGQMAYDYGAMBkDA" +
+        "CA2RgAAJMxAABmYwAATMYAAJiNAQAwGQMA4A1lzgLfaZkV0AAAAABJRU5ErkJggg==";
+      var PRESET_DEFINITIONS = [
+        {
+          id: "backend-h5-test",
+          label: "Backend H5 Test",
+          description: "Loads the standalone backend test page from /h5-games/sample-game/index.html.",
+          url: DEFAULT_HTML_URL,
+          colors: ["#1d4ed8", "#0f766e"],
+          isCustom: false
+        },
+        {
+          id: "trial-game",
+          label: "Trial Score Game",
+          description: "Loads another built-in test game from /h5-games/trial-game/index.html.",
+          url: "http://47.109.139.75:8080/h5-games/trial-game/index.html?v=20260420-resize",
+          colors: ["#7c3aed", "#ec4899"],
+          isCustom: false
+        },
+        {
+          id: "backend-h5-test-copy",
+          label: "Backend H5 Test Copy",
+          description: "Same backend test page, kept as a second preset for quick switching.",
+          url: DEFAULT_HTML_URL,
+          colors: ["#0f766e", "#eab308"],
+          isCustom: false
+        },
+        {
+          id: "custom-link",
+          label: "\u81ea\u5b9a\u4e49\u94fe\u63a5",
+          description: "\u9009\u62e9\u8be5\u9879\u540e\u53ef\u8f93\u5165\u5b8c\u6574 URL \u8fdb\u884c\u63d2\u5165",
+          url: "",
+          colors: ["#475569", "#111827"],
+          isCustom: true
+        }
+      ];
+      var OPTIONS = PRESET_DEFINITIONS.map(buildPreset);
+      var PREVIEW_BLANK_URL = "about:blank";
+      var PREVIEW_SIZE_STORAGE_KEY = "onlyoffice-h5-game-preview-size";
+      var previewLoadTimer = 0;
 
-          <div class="field">
-            <label for="gameName">游戏名称</label>
-            <input id="gameName" placeholder="例如：记忆翻牌挑战">
-          </div>
+      function buildPreset(definition) {
+        return {
+          id: definition.id,
+          label: definition.label,
+          description: definition.description,
+          url: definition.url,
+          previewImage: createPreviewImage(definition.label, definition.colors[0], definition.colors[1]),
+          isCustom: definition.isCustom
+        };
+      }
 
-          <div class="field-row">
-            <div class="field">
-              <label for="bucketName">存储桶</label>
-              <input id="bucketName" placeholder="例如：html-5-games">
-            </div>
-            <div class="field">
-              <label for="entryFile">入口文件</label>
-              <input id="entryFile" placeholder="例如：index.html">
-            </div>
-          </div>
+      function byId(id) {
+        return document.getElementById(id);
+      }
 
-          <div class="field">
-            <label for="gameDir">游戏目录</label>
-            <input id="gameDir" placeholder="例如：game-001">
-          </div>
+      function roundRect(ctx, x, y, width, height, radius) {
+        var r = Math.min(radius, width / 2, height / 2);
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.arcTo(x + width, y, x + width, y + height, r);
+        ctx.arcTo(x + width, y + height, x, y + height, r);
+        ctx.arcTo(x, y + height, x, y, r);
+        ctx.arcTo(x, y, x + width, y, r);
+        ctx.closePath();
+      }
 
-          <div class="field-row">
-            <div class="field">
-              <label for="widthMm">宽度（mm）</label>
-              <input id="widthMm" type="number" min="1" step="1">
-            </div>
-            <div class="field">
-              <label for="heightMm">高度（mm）</label>
-              <input id="heightMm" type="number" min="1" step="1">
-            </div>
-          </div>
-        </div>
+      function createPreviewImage(label, colorStart, colorEnd) {
+        try {
+          var canvas = document.createElement("canvas");
+          var ctx = canvas.getContext("2d");
+          canvas.width = 480;
+          canvas.height = 270;
+          if (!ctx) {
+            return FALLBACK_IMAGE_URL;
+          }
 
-        <div class="section soft">
-          <div class="section-title">预览卡片</div>
-          <div class="section-desc">下方展示的是插入到幻灯片中的卡片效果，插入后仍然可以继续调整大小。</div>
+          var gradient = ctx.createLinearGradient(0, 0, 480, 270);
+          gradient.addColorStop(0, colorStart);
+          gradient.addColorStop(1, colorEnd);
+          ctx.fillStyle = gradient;
+          ctx.fillRect(0, 0, 480, 270);
 
-          <div class="preview-card">
-            <div class="preview-cover">
-              <div class="preview-badge">互动 H5</div>
-            </div>
-            <div class="preview-body">
-               <h2 class="preview-title" id="previewTitle">待填写游戏名称</h2>
+          ctx.fillStyle = "rgba(255,255,255,0.12)";
+          ctx.beginPath();
+          ctx.arc(86, 68, 46, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.beginPath();
+          ctx.arc(402, 188, 58, 0, Math.PI * 2);
+          ctx.fill();
 
-              <div class="preview-meta">
-                <div class="meta-item">
-                  <div class="meta-label">存储桶</div>
-                  <div class="meta-value" id="previewBucket">待填写</div>
-                </div>
-                <div class="meta-item">
-                  <div class="meta-label">目录</div>
-                  <div class="meta-value" id="previewDir">待填写</div>
-                </div>
-                <div class="meta-item">
-                  <div class="meta-label">入口</div>
-                  <div class="meta-value" id="previewEntry">待填写</div>
-                </div>
-                <div class="meta-item">
-                  <div class="meta-label">尺寸</div>
-                  <div class="meta-value" id="previewSize">默认尺寸</div>
-                </div>
-              </div>
-            </div>
-          </div>
+          ctx.fillStyle = "rgba(255,255,255,0.92)";
+          roundRect(ctx, 36, 150, 408, 82, 20);
+          ctx.fill();
 
-          <div class="hint" id="resolvedHint">
-            插入前，后端会校验 MinIO 中的资源对象，并解析出真实可访问的 HTML 地址。
-          </div>
-        </div>
-      </div>
+          ctx.fillStyle = "rgba(255,255,255,0.2)";
+          roundRect(ctx, 58, 36, 124, 24, 12);
+          ctx.fill();
 
-      <div class="footer">
-        <div id="status" class="status">已就绪，可以插入基于 MinIO 的 H5 小游戏。</div>
-      </div>
-    </div>
-  </div>
+          ctx.fillStyle = "#ffffff";
+          ctx.font = "700 13px 'Segoe UI', sans-serif";
+          ctx.fillText("EMBEDDED H5", 74, 52);
 
-  <script src="./code.js"></script>
+          ctx.fillStyle = "#172033";
+          ctx.font = "700 28px 'Segoe UI', sans-serif";
+          ctx.fillText(label, 62, 185);
+
+          ctx.fillStyle = "rgba(23,32,51,0.65)";
+          ctx.font = "600 13px 'Segoe UI', sans-serif";
+          ctx.fillText("ONLYOFFICE PRESET", 64, 210);
+
+          return canvas.toDataURL("image/png");
+        } catch (error) {
+          return FALLBACK_IMAGE_URL;
+        }
+      }
+
+      function safeParseOleData(oleData) {
+        if (!oleData) {
+          return null;
+        }
+
+        if (typeof oleData === "string") {
+          if (oleData === "[object Object]") {
+            return { url: DEFAULT_HTML_URL };
+          }
+
+          try {
+            return JSON.parse(oleData);
+          } catch (error) {
+            return null;
+          }
+        }
+
+        if (typeof oleData === "object") {
+          return oleData;
+        }
+
+        return null;
+      }
+
+      function findPreset(id) {
+        for (var i = 0; i < OPTIONS.length; i += 1) {
+          if (OPTIONS[i].id === id) {
+            return OPTIONS[i];
+          }
+        }
+        return OPTIONS[0];
+      }
+
+      function currentPreset() {
+        var selector = byId("html-selector");
+        if (!selector) {
+          return OPTIONS[0];
+        }
+        return findPreset(selector.value);
+      }
+
+      function isValidHttpUrl(value) {
+        if (!value) {
+          return false;
+        }
+
+        try {
+          var parsed = new URL(value);
+          return parsed.protocol === "http:" || parsed.protocol === "https:";
+        } catch (error) {
+          return false;
+        }
+      }
+
+      function renderPlayer() {
+        var app = byId("app");
+        var info = window.Asc.plugin.info || {};
+        var parsedData = safeParseOleData(info.data);
+        var finalUrl = parsedData && parsedData.url ? parsedData.url : DEFAULT_HTML_URL;
+
+        if (!finalUrl) {
+          app.innerHTML =
+            '<div class="message"><h3>\u672a\u80fd\u8bfb\u53d6\u5230\u6709\u6548\u7684\u7f51\u9875\u5730\u5740</h3></div>';
+          return;
+        }
+
+        app.innerHTML =
+          '<iframe src="' +
+          finalUrl +
+          '" class="player-frame" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>';
+      }
+
+      function requestPluginWindowResize() {
+        try {
+          if (window.Asc && window.Asc.plugin && typeof window.Asc.plugin.resizeWindow === "function") {
+            window.Asc.plugin.resizeWindow(980, 760, 760, 560, 1200, 920);
+          }
+        } catch (error) {
+          // Some ONLYOFFICE builds do not expose runtime modal resizing.
+        }
+      }
+
+      function buildOptionsHtml() {
+        return OPTIONS.map(function (item, index) {
+          var selected = index === 0 ? " selected" : "";
+          return (
+            '<option value="' +
+            item.id +
+            '"' +
+            selected +
+            ">" +
+            item.label +
+            "</option>"
+          );
+        }).join("");
+      }
+
+      function syncPresetState() {
+        var preset = currentPreset();
+        var customRow = byId("custom-row");
+        var customInput = byId("custom-url");
+        var previewName = byId("preview-name");
+        var previewTag = byId("preview-tag");
+        var helper = byId("preset-helper");
+        var insertButton = byId("insert-btn");
+        var customValue = customInput.value.trim();
+        var previewUrl = resolvePreviewUrl(preset, customValue);
+
+        previewName.textContent = preset.label;
+        previewTag.textContent = preset.isCustom ? "\u81ea\u5b9a\u4e49" : "\u9884\u8bbe";
+        helper.textContent = preset.description;
+
+        if (preset.isCustom) {
+          customRow.classList.remove("is-hidden");
+          customInput.disabled = false;
+          insertButton.disabled = !isValidHttpUrl(customValue);
+        } else {
+          customRow.classList.add("is-hidden");
+          customInput.disabled = true;
+          insertButton.disabled = false;
+        }
+
+        syncPreviewFrame(previewUrl, preset.isCustom);
+      }
+
+      function resolvePreviewUrl(preset, customValue) {
+        if (!preset) {
+          return DEFAULT_HTML_URL;
+        }
+
+        if (preset.isCustom) {
+          return isValidHttpUrl(customValue) ? customValue : "";
+        }
+
+        return preset.url || DEFAULT_HTML_URL;
+      }
+
+      function updatePreviewPlaceholder(title, text) {
+        var placeholder = byId("preview-placeholder");
+        if (!placeholder) {
+          return;
+        }
+
+        byId("preview-placeholder-title").textContent = title;
+        byId("preview-placeholder-text").textContent = text;
+        placeholder.classList.remove("is-hidden");
+      }
+
+      function hidePreviewPlaceholder() {
+        var placeholder = byId("preview-placeholder");
+        if (!placeholder) {
+          return;
+        }
+        placeholder.classList.add("is-hidden");
+      }
+
+      function syncPreviewFrame(url, isCustomMode) {
+        var frame = byId("html-preview-frame");
+        var currentSrc;
+        if (!frame) {
+          return;
+        }
+
+        window.clearTimeout(previewLoadTimer);
+
+        if (!url) {
+          frame.setAttribute("data-current-src", PREVIEW_BLANK_URL);
+          frame.setAttribute("data-loaded", "false");
+          if (frame.src !== PREVIEW_BLANK_URL) {
+            frame.src = PREVIEW_BLANK_URL;
+          }
+          updatePreviewPlaceholder(
+            isCustomMode ? "\u8f93\u5165\u5b8c\u6574 URL \u540e\u5f00\u59cb\u9884\u89c8" : "\u6682\u65e0\u53ef\u9884\u89c8\u5185\u5bb9",
+            isCustomMode
+              ? "\u8fd9\u91cc\u4f1a\u76f4\u63a5\u52a0\u8f7d\u4f60\u586b\u5199\u7684 HTML \u9875\u9762\uff0c\u4e0d\u518d\u53ea\u663e\u793a\u4e00\u5f20\u5360\u4f4d\u56fe\u3002"
+              : "\u5f53\u524d\u9009\u9879\u8fd8\u6ca1\u6709\u914d\u7f6e\u6709\u6548\u7684 HTML \u5730\u5740\u3002"
+          );
+          return;
+        }
+
+        currentSrc = frame.getAttribute("data-current-src");
+        if (currentSrc === url && frame.getAttribute("data-loaded") === "true") {
+          hidePreviewPlaceholder();
+          return;
+        }
+
+        updatePreviewPlaceholder(
+          "\u6b63\u5728\u52a0\u8f7d HTML \u9884\u89c8",
+          "\u8fd9\u91cc\u4f1a\u76f4\u63a5\u663e\u793a\u76ee\u6807 H5 \u9875\u9762\uff1b\u5982\u679c\u6301\u7eed\u7a7a\u767d\uff0c\u901a\u5e38\u662f\u76ee\u6807\u9875\u9762\u7981\u6b62 iframe \u6253\u5f00\u3002"
+        );
+        frame.setAttribute("data-loaded", "false");
+
+        if (currentSrc !== url) {
+          frame.setAttribute("data-current-src", url);
+          frame.src = url;
+        }
+
+        previewLoadTimer = window.setTimeout(function () {
+          if (frame.getAttribute("data-current-src") === url && frame.getAttribute("data-loaded") !== "true") {
+            updatePreviewPlaceholder(
+              "\u9884\u89c8\u52a0\u8f7d\u8f83\u6162",
+              "\u5982\u679c\u8fd9\u91cc\u4e00\u76f4\u6ca1\u6709\u5185\u5bb9\uff0c\u53ef\u80fd\u662f\u76ee\u6807\u7f51\u9875\u7981\u6b62 iframe\uff0c\u6216\u8005\u8be5\u94fe\u63a5\u5f53\u524d\u65e0\u6cd5\u8bbf\u95ee\u3002"
+            );
+          }
+        }, 3500);
+      }
+
+      function bindPreviewFrameEvents() {
+        var frame = byId("html-preview-frame");
+        if (!frame || frame.getAttribute("data-bound") === "true") {
+          return;
+        }
+
+        frame.setAttribute("data-bound", "true");
+        frame.addEventListener("load", function () {
+          frame.setAttribute("data-loaded", "true");
+          window.clearTimeout(previewLoadTimer);
+
+          if (frame.getAttribute("data-current-src") !== PREVIEW_BLANK_URL) {
+            hidePreviewPlaceholder();
+          }
+        });
+      }
+
+      function clamp(value, min, max) {
+        return Math.max(min, Math.min(max, value));
+      }
+
+      function parsePreviewSize() {
+        try {
+          var raw = window.localStorage.getItem(PREVIEW_SIZE_STORAGE_KEY);
+          var parsed = raw ? JSON.parse(raw) : null;
+          if (parsed && Number.isFinite(parsed.width) && Number.isFinite(parsed.height)) {
+            return parsed;
+          }
+        } catch (error) {
+          return null;
+        }
+        return null;
+      }
+
+      function persistPreviewSize(width, height) {
+        try {
+          window.localStorage.setItem(
+            PREVIEW_SIZE_STORAGE_KEY,
+            JSON.stringify({ width: Math.round(width), height: Math.round(height) })
+          );
+        } catch (error) {
+          // Ignore storage errors in restricted plugin contexts.
+        }
+      }
+
+      function previewSizeLimits() {
+        var card = document.querySelector(".insert-card");
+        var cardRect = card ? card.getBoundingClientRect() : { width: window.innerWidth };
+        return {
+          minWidth: Math.min(320, Math.max(240, cardRect.width - 48)),
+          maxWidth: Math.max(280, cardRect.width - 48),
+          minHeight: 220,
+          maxHeight: Math.max(240, window.innerHeight - 280)
+        };
+      }
+
+      function setPreviewBoxSize(width, height, shouldPersist) {
+        var box = byId("preview-box");
+        var limits = previewSizeLimits();
+        var nextWidth;
+        var nextHeight;
+        if (!box) {
+          return;
+        }
+
+        nextWidth = clamp(width, limits.minWidth, limits.maxWidth);
+        nextHeight = clamp(height, limits.minHeight, limits.maxHeight);
+        box.style.width = nextWidth + "px";
+        box.style.height = nextHeight + "px";
+        if (shouldPersist) {
+          persistPreviewSize(nextWidth, nextHeight);
+        }
+      }
+
+      function autoFitPreviewBox() {
+        var box = byId("preview-box");
+        var card = document.querySelector(".insert-card");
+        var storedSize = parsePreviewSize();
+        var limits = previewSizeLimits();
+        var width;
+        var height;
+        if (!box || !card) {
+          return;
+        }
+
+        width = storedSize ? storedSize.width : limits.maxWidth;
+        height = storedSize
+          ? storedSize.height
+          : clamp(Math.round(window.innerHeight * 0.42), limits.minHeight, limits.maxHeight);
+        setPreviewBoxSize(width, height, false);
+      }
+
+      function bindPreviewResizeHandle() {
+        var box = byId("preview-box");
+        var handle = byId("preview-resize-handle");
+        var startX = 0;
+        var startY = 0;
+        var startWidth = 0;
+        var startHeight = 0;
+
+        if (!box || !handle || handle.getAttribute("data-bound") === "true") {
+          return;
+        }
+
+        handle.setAttribute("data-bound", "true");
+        handle.addEventListener("pointerdown", function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          startX = event.clientX;
+          startY = event.clientY;
+          startWidth = box.getBoundingClientRect().width;
+          startHeight = box.getBoundingClientRect().height;
+          handle.setPointerCapture(event.pointerId);
+
+          function onMove(moveEvent) {
+            var nextWidth = startWidth + (moveEvent.clientX - startX);
+            var nextHeight = startHeight + (moveEvent.clientY - startY);
+            setPreviewBoxSize(nextWidth, nextHeight, false);
+          }
+
+          function onUp(upEvent) {
+            var rect = box.getBoundingClientRect();
+            persistPreviewSize(rect.width, rect.height);
+            handle.releasePointerCapture(upEvent.pointerId);
+            handle.removeEventListener("pointermove", onMove);
+            handle.removeEventListener("pointerup", onUp);
+            handle.removeEventListener("pointercancel", onUp);
+          }
+
+          handle.addEventListener("pointermove", onMove);
+          handle.addEventListener("pointerup", onUp);
+          handle.addEventListener("pointercancel", onUp);
+        });
+      }
+
+      function renderInsert() {
+        var app = byId("app");
+
+        app.innerHTML =
+          '<div class="insert-container">' +
+          '  <div class="insert-card">' +
+          '    <h3 class="title">\u8bf7\u9009\u62e9\u8981\u63d2\u5165\u7684 H5 \u7f51\u9875</h3>' +
+          '    <p class="intro">\u63d0\u4f9b 3 \u4e2a\u5e38\u7528\u9884\u8bbe\u548c 1 \u4e2a\u81ea\u5b9a\u4e49\u5165\u53e3\uff0c\u9009\u4e2d\u540e\u53ef\u76f4\u63a5\u63d2\u5165\u5230\u5f53\u524d\u5e7b\u706f\u7247\u3002</p>' +
+          '    <p class="field-label">\u9884\u8bbe\u9009\u9879</p>' +
+          '    <select id="html-selector">' +
+          buildOptionsHtml() +
+          '    </select>' +
+          '    <p class="helper" id="preset-helper"></p>' +
+          '    <div class="preview-box" id="preview-box">' +
+          '      <iframe id="html-preview-frame" class="preview-frame" src="about:blank" title="HTML \u5b9e\u65f6\u9884\u89c8" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>' +
+          '      <div class="preview-placeholder" id="preview-placeholder">' +
+          '        <strong id="preview-placeholder-title">\u6b63\u5728\u51c6\u5907\u9884\u89c8</strong>' +
+          '        <span id="preview-placeholder-text">\u8fd9\u91cc\u4f1a\u76f4\u63a5\u663e\u793a H5 \u9875\u9762\uff0c\u4e0d\u518d\u53ea\u4f7f\u7528\u56fe\u7247\u5360\u4f4d\u3002</span>' +
+          '      </div>' +
+          '      <button type="button" class="preview-resize-handle" id="preview-resize-handle" title="\u62d6\u62fd\u8c03\u6574\u9884\u89c8\u5927\u5c0f" aria-label="\u62d6\u62fd\u8c03\u6574\u9884\u89c8\u5927\u5c0f"></button>' +
+          '    </div>' +
+          '    <div class="preview-meta">' +
+          '      <div class="preview-name" id="preview-name"></div>' +
+          '      <div class="preview-tag" id="preview-tag"></div>' +
+          '    </div>' +
+          '    <div class="custom-row is-hidden" id="custom-row">' +
+          '      <p class="field-label">\u81ea\u5b9a\u4e49\u94fe\u63a5</p>' +
+          '      <input type="text" id="custom-url" placeholder="\u8bf7\u8f93\u5165\u5b8c\u6574 URL\uff0c\u4f8b\u5982 https://example.com/game">' +
+          '      <p class="helper">\u4ec5\u5728\u9009\u62e9\u201c\u81ea\u5b9a\u4e49\u94fe\u63a5\u201d\u65f6\u751f\u6548</p>' +
+          '    </div>' +
+          '    <p class="fine-print">\u8fd9\u4e2a\u9884\u89c8\u7a97\u53e3\u4f1a\u76f4\u63a5\u6253\u5f00\u771f\u5b9e HTML \u9875\u9762\uff1b\u63d2\u5165\u540e\u7684\u5361\u7247\u5927\u5c0f\u4ecd\u53ef\u5728 PPT \u5185\u624b\u52a8\u8c03\u6574\u3002</p>' +
+          '    <button id="insert-btn">\u786e\u8ba4\u63d2\u5165\u5230\u5e7b\u706f\u7247</button>' +
+          '  </div>' +
+          '</div>';
+
+        autoFitPreviewBox();
+        bindPreviewFrameEvents();
+        bindPreviewResizeHandle();
+        byId("html-selector").addEventListener("change", syncPresetState);
+        byId("custom-url").addEventListener("input", syncPresetState);
+        byId("insert-btn").addEventListener("click", submitInsert);
+        window.addEventListener("resize", autoFitPreviewBox);
+
+        syncPresetState();
+      }
+
+      function submitInsert() {
+        var preset = currentPreset();
+        var customUrl = byId("custom-url").value.trim();
+        var finalUrl = preset.isCustom ? customUrl : preset.url;
+
+        if (!finalUrl || (preset.isCustom && !isValidHttpUrl(finalUrl))) {
+          window.alert("\u8bf7\u63d0\u4f9b\u6709\u6548\u7684\u7f51\u9875\u5730\u5740\u3002");
+          return;
+        }
+
+        var oleData = JSON.stringify({ url: finalUrl });
+        var payload = {
+          data: oleData,
+          imgSrc: preset.previewImage || FALLBACK_IMAGE_URL,
+          guid: "asc.{FFE1F462-1E74-4D2C-8C1F-0A0A0A0A0A01}",
+          width: 150,
+          height: 100,
+          widthPix: 150 * 36000,
+          heightPix: 100 * 36000
+        };
+
+        window.Asc.plugin.executeMethod("AddOleObject", [payload], function () {
+          window.Asc.plugin.executeCommand("close", "");
+        });
+      }
+
+      window.Asc.plugin.init = function () {
+        var info = window.Asc.plugin.info || {};
+        if (info.objectId) {
+          renderPlayer();
+          return;
+        }
+        requestPluginWindowResize();
+        renderInsert();
+      };
+
+      window.Asc.plugin.button = function () {
+        window.Asc.plugin.executeCommand("close", "");
+      };
+    })();
+  </script>
 </body>
 </html>

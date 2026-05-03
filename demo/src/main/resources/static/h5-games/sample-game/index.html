@@ -1,71 +1,320 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Sample H5 Game</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ONLYOFFICE H5 Test</title>
   <style>
+    :root {
+      color-scheme: light;
+      --ink: #14213d;
+      --muted: #5f6f89;
+      --blue: #2563eb;
+      --cyan: #06b6d4;
+      --green: #16a34a;
+      --panel: rgba(255, 255, 255, 0.92);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
       display: grid;
       place-items: center;
-      font-family: "Microsoft YaHei", sans-serif;
+      overflow: hidden;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
       background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.45), transparent 30%),
-        linear-gradient(135deg, #1d4ed8, #0f766e);
-      color: #ffffff;
+        radial-gradient(circle at 18% 18%, rgba(6, 182, 212, 0.28), transparent 28%),
+        radial-gradient(circle at 82% 18%, rgba(37, 99, 235, 0.2), transparent 30%),
+        linear-gradient(135deg, #f7fbff 0%, #e7f0ff 48%, #f2fff8 100%);
     }
-    .card {
-      width: min(88vw, 520px);
-      border-radius: 24px;
-      background: rgba(255, 255, 255, 0.14);
-      backdrop-filter: blur(10px);
+
+    .shell {
+      width: min(92vw, 760px);
+      min-height: min(82vh, 520px);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 22px;
       padding: 28px;
-      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.16);
+      border: 1px solid rgba(37, 99, 235, 0.14);
+      border-radius: 28px;
+      background: var(--panel);
+      box-shadow: 0 28px 70px rgba(20, 33, 61, 0.16);
+      backdrop-filter: blur(14px);
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #e8f2ff;
+      color: #1d4ed8;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 5px rgba(22, 163, 74, 0.12);
+    }
+
+    h1 {
+      margin: 18px 0 8px;
+      font-size: clamp(34px, 6vw, 62px);
+      line-height: 0.95;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 620px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .stage {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.8fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .meter,
+    .counter {
+      min-height: 210px;
+      border-radius: 22px;
+      border: 1px solid rgba(20, 33, 61, 0.08);
+      background: #fff;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .meter {
+      position: relative;
+      overflow: hidden;
+      padding: 22px;
+    }
+
+    .bar {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 22px;
+      height: 18px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #dbe7f7;
+    }
+
+    .bar span {
+      display: block;
+      width: 42%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      transition: width 0.25s ease;
+    }
+
+    .pulse {
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      right: 22px;
+      top: 18px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, rgba(6, 182, 212, 0.28), transparent 62%),
+        radial-gradient(circle, rgba(37, 99, 235, 0.22), transparent 48%);
+      animation: breathe 2.4s ease-in-out infinite;
+    }
+
+    .meter-title {
+      position: relative;
+      margin: 0;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .meter-copy {
+      position: relative;
+      width: min(330px, 72%);
+      margin: 12px 0 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .counter {
+      display: grid;
+      place-items: center;
+      padding: 22px;
       text-align: center;
     }
-    h1 {
-      margin: 0 0 12px;
-      font-size: 30px;
+
+    .score {
+      font-size: 56px;
+      font-weight: 900;
+      color: var(--blue);
+      line-height: 1;
     }
-    p {
-      margin: 0 0 18px;
-      line-height: 1.6;
-      color: rgba(255,255,255,0.9);
+
+    .score-label {
+      margin-top: 8px;
+      color: var(--muted);
+      font-weight: 700;
     }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
     button {
+      min-width: 150px;
       border: 0;
-      border-radius: 999px;
-      padding: 12px 24px;
-      font-size: 16px;
-      font-weight: 700;
-      color: #134e4a;
-      background: #ffffff;
+      border-radius: 14px;
+      padding: 14px 18px;
+      background: var(--blue);
+      color: #fff;
       cursor: pointer;
+      font-size: 15px;
+      font-weight: 900;
+      box-shadow: 0 12px 24px rgba(37, 99, 235, 0.2);
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
     }
-    #score {
-      margin-top: 18px;
-      font-size: 22px;
-      font-weight: 700;
+
+    button.secondary {
+      background: #eef4ff;
+      color: var(--blue);
+      box-shadow: none;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 30px rgba(37, 99, 235, 0.24);
+    }
+
+    button.secondary:hover {
+      box-shadow: 0 10px 18px rgba(37, 99, 235, 0.08);
+    }
+
+    .footer {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @keyframes breathe {
+      0%, 100% {
+        transform: scale(0.92);
+        opacity: 0.78;
+      }
+
+      50% {
+        transform: scale(1.08);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 680px) {
+      body {
+        overflow: auto;
+      }
+
+      .shell {
+        min-height: auto;
+        margin: 16px;
+      }
+
+      .stage {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Sample H5 Game</h1>
-    <p>这是一个最小可访问的 H5 示例页面。你可以先把它作为 `htmlUrl` 跑通 ONLYOFFICE 插件，再替换成你自己的小游戏入口。</p>
-    <button id="btn">点我加分</button>
-    <div id="score">Score: 0</div>
-  </div>
+  <main class="shell">
+    <section class="header">
+      <div class="badge"><span class="dot"></span> H5 embed test page</div>
+      <div class="badge">ONLYOFFICE OLE</div>
+    </section>
+
+    <section>
+      <h1>Interactive H5 Test</h1>
+      <p class="lead">
+        This standalone page is served by the backend static folder. If you can see
+        the counter, buttons, and progress bar inside ONLYOFFICE, the H5 insert
+        pipeline is using the test page instead of the frontend app.
+      </p>
+    </section>
+
+    <section class="stage">
+      <article class="meter">
+        <div class="pulse"></div>
+        <h2 class="meter-title">Runtime signal</h2>
+        <p class="meter-copy">
+          Click the primary button to change this page. The inserted slide should
+          keep rendering this same URL when reopened.
+        </p>
+        <div class="bar"><span id="bar"></span></div>
+      </article>
+
+      <article class="counter">
+        <div>
+          <div class="score" id="score">0</div>
+          <div class="score-label">test clicks</div>
+        </div>
+      </article>
+    </section>
+
+    <section class="actions">
+      <button id="add" type="button">Add test click</button>
+      <button id="reset" class="secondary" type="button">Reset</button>
+    </section>
+
+    <footer class="footer">
+      Static path: /h5-games/sample-game/index.html
+    </footer>
+  </main>
+
   <script>
     (function () {
-      var score = 0;
-      var scoreView = document.getElementById("score");
-      document.getElementById("btn").addEventListener("click", function () {
-        score += 1;
-        scoreView.textContent = "Score: " + score;
+      var count = 0;
+      var score = document.getElementById("score");
+      var bar = document.getElementById("bar");
+
+      function render() {
+        score.textContent = String(count);
+        bar.style.width = Math.min(100, 42 + count * 8) + "%";
+      }
+
+      document.getElementById("add").addEventListener("click", function () {
+        count += 1;
+        render();
       });
+
+      document.getElementById("reset").addEventListener("click", function () {
+        count = 0;
+        render();
+      });
+
+      render();
     })();
   </script>
 </body>

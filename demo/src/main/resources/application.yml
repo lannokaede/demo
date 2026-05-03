@@ -1,6 +1,10 @@
 spring:
   application:
     name: demo
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 120MB
   mail:
     host: smtp.qq.com
     port: 465
@@ -18,6 +22,14 @@ spring:
     username: root
     password: xubup798005
     driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 24
+      minimum-idle: 8
+      connection-timeout: 3000
+      validation-timeout: 1000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      keepalive-time: 300000
 
 mybatis:
   configuration:
@@ -37,18 +49,29 @@ onlyoffice:
   jwt-secret: ""
   default-mode: edit
   plugin-config-urls:
-    - http://47.109.139.75:8088/sdkjs-plugins/h5-game/config.json
-  autostart-plugin-guids:
-    - asc.{FFE1F462-1E74-4D2C-8C1F-0A0A0A0A0A01}
+    - http://47.109.139.75:8080/onlyoffice-plugins/h5-game/config.json?v=20260420-resize
+  autostart-plugin-guids: []
   h5-game:
     plugin-folder: h5-game
     plugin-guid: asc.{FFE1F462-1E74-4D2C-8C1F-0A0A0A0A0A01}
-    preview-image-url: http://47.109.139.75:8080/static/onlyoffice-assets/onlyoffice-h5-game.svg
+    preview-image-url: http://47.109.139.75:8080/onlyoffice-assets/onlyoffice-h5-game.svg
     default-width-mm: 120
     default-height-mm: 90
 
 server:
   port: 8080
+  compression:
+    enabled: true
+    min-response-size: 2KB
+  tomcat:
+    threads:
+      max: 200
+      min-spare: 20
+    max-connections: 8192
+    accept-count: 200
+    connection-timeout: 10s
+    keep-alive-timeout: 20s
+    max-keep-alive-requests: 100
 
 auth:
   jwt-secret: 7dcb2fa6d1f04485a7d13ae4f4d3df05-auth-demo-secret
@@ -61,22 +84,13 @@ auth:
     cleanup-initial-delay-ms: 60000
     used-retention-minutes: 30
 
-ml:
-  mock-enabled: true
-  mock-download-object-key: "presentation_20260326_094052_themed_refined (1).pptx"
-  mock-file:
-    previous-file-id: "transformerchubanpptx"
-    file-id: "transformeryouhuiban01pptx"
-    previous-file-name: "transformer_初版.pptx"
-    file-name: "transformer_优化版01.pptx"
-    object-key: "presentation_20260326_094052_themed_refined (1).pptx"
-    creator-id: "u100"
-    bucket-name: "ppt-files"
-    api-base-url: "http://47.109.139.75:8080"
-    direct-download-url: "http://47.109.139.75:9000/ppt-files/presentation_20260326_094052_themed_refined%20%281%29.pptx"
-    mode: "edit"
-    lang: "zh-CN"
-    user-id: "u100"
-  callback-token: dev-ml-callback-token
-  submit-url: "https://u616224-8ca9-510b4748.westc.seetacloud.com:8443/api/v1/generate"
-  submit-auth-token: ""
+superppt:
+  base-url: http://100.70.156.105:8080
+  auth-token: ${SUPERPPT_AUTH_TOKEN:}
+  connect-timeout-ms: 30000
+  read-timeout-ms: 300000
+  get-retry-count: 2
+  get-retry-delay-ms: 1500
+
+outbound-http:
+  connect-timeout-ms: 5000
